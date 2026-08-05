@@ -112,8 +112,10 @@ button[data-testid^="stBaseButton"] * {
 }
 
 /* Tab container styling */
-div[data-testid="stTabBar"] {
+div[data-testid="stTabBar"], 
+div[role="tablist"] {
     background-color: rgba(15, 23, 42, 0.6) !important;
+    background: rgba(15, 23, 42, 0.6) !important;
     border: 1px solid rgba(255, 255, 255, 0.08) !important;
     border-radius: 14px !important;
     padding: 6px !important;
@@ -124,31 +126,50 @@ div[data-testid="stTabBar"] {
 
 /* Tab button styling */
 button[data-baseweb="tab"] {
+    background-color: transparent !important;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 10px !important;
+    padding: 12px 24px !important;
+    transition: all 0.2s ease-in-out !important;
+}
+
+/* Text and icon styling inside all tab buttons to ensure they are visible and not inheriting dark colors */
+button[data-baseweb="tab"] *, 
+button[data-baseweb="tab"] p, 
+button[data-baseweb="tab"] span {
     color: #94a3b8 !important;
     font-size: 1.05rem !important;
     font-weight: 600 !important;
-    padding: 12px 24px !important;
-    border-radius: 10px !important;
-    transition: all 0.2s ease-in-out !important;
-    border: none !important;
-    background: transparent !important;
 }
 
+/* Hover state for tab buttons and their inner elements */
 button[data-baseweb="tab"]:hover {
-    color: #ffffff !important;
     background: rgba(255, 255, 255, 0.05) !important;
 }
-
-/* Selected active tab styling (overrides white or default red text) */
-button[data-baseweb="tab"][aria-selected="true"] {
-    color: #818cf8 !important;
-    background: rgba(99, 102, 241, 0.15) !important;
+button[data-baseweb="tab"]:hover *, 
+button[data-baseweb="tab"]:hover p, 
+button[data-baseweb="tab"]:hover span {
+    color: #ffffff !important;
 }
 
-/* Selected active tab indicator bar (forces indigo instead of the default red) */
+/* Selected active tab button styling */
+button[data-baseweb="tab"][aria-selected="true"] {
+    background: rgba(99, 102, 241, 0.15) !important;
+    background-color: rgba(99, 102, 241, 0.15) !important;
+}
+button[data-baseweb="tab"][aria-selected="true"] *, 
+button[data-baseweb="tab"][aria-selected="true"] p, 
+button[data-baseweb="tab"][aria-selected="true"] span {
+    color: #818cf8 !important;
+}
+
+/* Highlight bar indicator under active tab (overrides the red line!) */
 div[data-baseweb="tab-highlight"], 
-div[role="tablist"] + div {
+div[role="tablist"] + div,
+[class*="TabHighlight"] {
     background-color: #6366f1 !important;
+    background: #6366f1 !important;
     height: 2px !important;
 }
 
