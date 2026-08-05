@@ -155,6 +155,6 @@ else:
         flagged = bool(flag_prediction[0])
 
         if flagged:
-            st.success("✅ Invoice is **SAFE for Auto-Approval**")
-        else:
             st.error("🚨 Invoice requires **MANUAL APPROVAL**")
+        else:
+            st.success("✅ Invoice is **SAFE for Auto-Approval**")

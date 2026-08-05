@@ -17,9 +17,9 @@ ENV/
 *.env
 
 # Model artifacts (usually large / regenerable — remove this section if you want to track them)
-models/*.pkl
-*.pkl
-*.joblib
+# models/*.pkl
+# *.pkl
+# *.joblib
 
 # Data files (often large / sensitive — remove if you want to track the db)
 data/*.db
