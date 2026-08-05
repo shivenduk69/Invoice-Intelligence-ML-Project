@@ -71,11 +71,13 @@ div[data-baseweb="input"]:focus-within {
     box-shadow: 0 0 0 2px rgba(129, 140, 248, 0.2) !important;
 }
 
-/* Styled Streamlit Button */
-.stButton>button {
+/* Styled Streamlit Button (Form submit buttons and regular buttons) */
+div.stButton > button, 
+div[data-testid="stFormSubmitButton"] button, 
+button[data-testid^="stBaseButton"] {
     background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%) !important;
-    color: white !important;
-    border: none !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
     padding: 0.8rem 2rem !important;
     border-radius: 10px !important;
     font-weight: 600 !important;
@@ -87,27 +89,66 @@ div[data-baseweb="input"]:focus-within {
     margin-top: 10px !important;
 }
 
-.stButton>button:hover {
+div.stButton > button:hover, 
+div[data-testid="stFormSubmitButton"] button:hover, 
+button[data-testid^="stBaseButton"]:hover {
     transform: translateY(-2px) !important;
     box-shadow: 0 6px 22px 0 rgba(99, 102, 241, 0.5) !important;
     background: linear-gradient(135deg, #818cf8 0%, #6366f1 100%) !important;
+    color: #ffffff !important;
 }
 
-.stButton>button:active {
+div.stButton > button:active, 
+div[data-testid="stFormSubmitButton"] button:active, 
+button[data-testid^="stBaseButton"]:active {
     transform: translateY(0) !important;
 }
 
-/* Radio buttons container */
-div[data-testid="stRadio"] div[role="radiogroup"] {
-    background-color: rgba(15, 23, 42, 0.5) !important;
-    border: 1px solid rgba(255, 255, 255, 0.05) !important;
-    border-radius: 12px !important;
-    padding: 12px !important;
+/* Ensure text inside all buttons is white */
+div.stButton > button *, 
+div[data-testid="stFormSubmitButton"] button *, 
+button[data-testid^="stBaseButton"] * {
+    color: #ffffff !important;
 }
 
-div[data-testid="stRadio"] label {
-    font-weight: 500 !important;
-    color: #cbd5e1 !important;
+/* Tab container styling */
+div[data-testid="stTabBar"] {
+    background: rgba(30, 41, 59, 0.4) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 14px !important;
+    padding: 6px 12px !important;
+    margin-bottom: 2.5rem !important;
+    backdrop-filter: blur(10px) !important;
+    gap: 10px !important;
+}
+
+/* Tab button styling */
+button[data-baseweb="tab"] {
+    color: #94a3b8 !important;
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+    padding: 12px 24px !important;
+    border-radius: 10px !important;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    border: none !important;
+    background: transparent !important;
+}
+
+button[data-baseweb="tab"]:hover {
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+}
+
+button[data-baseweb="tab"][aria-selected="true"] {
+    color: #ffffff !important;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.25) 0%, rgba(99, 102, 241, 0.05) 100%) !important;
+    border-bottom: 2px solid #6366f1 !important;
+    box-shadow: inset 0 0 12px rgba(99, 102, 241, 0.15) !important;
+}
+
+/* Hide the default horizontal line under tabs */
+div[data-testid="stTabBar"]::after {
+    display: none !important;
 }
 
 /* Dividers */
@@ -156,37 +197,40 @@ st.divider()
 # ---------------------------------------------------------
 st.sidebar.markdown("""
 <div style="padding: 10px 0;">
-    <h3 style="margin-bottom: 5px;">🤖 AI Engine Control</h3>
-    <p style="color: #64748b; font-size: 0.85rem; margin-bottom: 20px;">Select the cognitive module to evaluate.</p>
+    <h2 style="margin-bottom: 5px; font-size: 1.6rem; font-weight: 800; background: linear-gradient(135deg, #ffffff 40%, #a5b4fc 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">🛡️ Audit Control</h2>
+    <p style="color: #64748b; font-size: 0.85rem; margin-bottom: 20px;">Invoice Intelligence Suite</p>
 </div>
-""", unsafe_allow_html=True)
 
-selected_model = st.sidebar.radio(
-    "Choose Prediction Module",
-    [
-        "Freight Cost Prediction",
-        "Invoice Manual Approval Flag"
-    ]
-)
+<div style="padding: 1.2rem; background: rgba(30, 41, 59, 0.4); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 12px; margin-bottom: 20px;">
+    <h4 style="font-size: 0.95rem; margin-bottom: 8px; color: #e2e8f0; font-weight: 600;">⚡ Engine Status</h4>
+    <div style="display: flex; align-items: center; gap: 8px; color: #4ade80; font-size: 0.85rem; font-weight: 600;">
+        <span style="width: 8px; height: 8px; background-color: #4ade80; border-radius: 50%; display: inline-block; box-shadow: 0 0 10px #4ade80;"></span>
+        Models Loaded & Ready
+    </div>
+</div>
 
-st.sidebar.markdown("""
-<div style="margin-top: 30px; padding: 1.2rem; background: rgba(30, 41, 59, 0.4); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 12px;">
-    <h4 style="font-size: 0.95rem; margin-bottom: 8px; color: #e2e8f0;">⚡ Business Impact</h4>
+<div style="padding: 1.2rem; background: rgba(30, 41, 59, 0.4); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 12px;">
+    <h4 style="font-size: 0.95rem; margin-bottom: 8px; color: #e2e8f0; font-weight: 600;">⚡ Business Impact</h4>
     <ul style="color: #94a3b8; font-size: 0.85rem; padding-left: 15px; margin: 0; line-height: 1.6;">
-        <li>Optimized Freight spend prediction</li>
-        <li>Automated risk assessment</li>
-        <li>Sub-second invoice screening latency</li>
+        <li>Optimized Freight spend forecasting</li>
+        <li>Automated invoice risk screening</li>
+        <li>Financial leakage prevention</li>
     </ul>
 </div>
 """, unsafe_allow_html=True)
 
+# ---------------------------------------------------------
+# Tabs Navigation
+# ---------------------------------------------------------
+tab1, tab2 = st.tabs([
+    "🚛 Freight Cost Forecasting",
+    "🚨 Invoice Risk Auditing"
+])
 
-# ---------------------------------------------------------
-# Freight Cost Prediction
-# ---------------------------------------------------------
-if selected_model == "Freight Cost Prediction":
+# Tab 1: Freight Cost Prediction
+with tab1:
     st.markdown("""
-    <div style="margin-bottom: 1.5rem;">
+    <div style="margin-bottom: 1.5rem; margin-top: 1rem;">
         <h2 style="font-size: 1.8rem; font-weight: 700; margin-bottom: 5px;">🚛 Freight Cost Forecasting</h2>
         <p style="color: #94a3b8; font-size: 0.95rem;">Forecast the freight charges of vendor shipping based on the Invoice Value.</p>
     </div>
@@ -228,12 +272,10 @@ if selected_model == "Freight Cost Prediction":
         except Exception as e:
             st.error(f"⚠️ **Error running prediction:** {str(e)}")
 
-# ---------------------------------------------------------
-# Invoice Flag Prediction
-# ---------------------------------------------------------
-else:
+# Tab 2: Invoice Flag Prediction
+with tab2:
     st.markdown("""
-    <div style="margin-bottom: 1.5rem;">
+    <div style="margin-bottom: 1.5rem; margin-top: 1rem;">
         <h2 style="font-size: 1.8rem; font-weight: 700; margin-bottom: 5px;">🚨 Invoice Manual Approval Prediction</h2>
         <p style="color: #94a3b8; font-size: 0.95rem;">Evaluate if a vendor invoice exhibits pricing or quantity anomalies requiring human auditor review.</p>
     </div>
