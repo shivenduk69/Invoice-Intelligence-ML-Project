@@ -113,23 +113,23 @@ button[data-testid^="stBaseButton"] * {
 
 /* Tab container styling */
 div[data-testid="stTabBar"] {
-    background: rgba(30, 41, 59, 0.4) !important;
+    background-color: rgba(15, 23, 42, 0.6) !important;
     border: 1px solid rgba(255, 255, 255, 0.08) !important;
     border-radius: 14px !important;
-    padding: 6px 12px !important;
+    padding: 6px !important;
     margin-bottom: 2.5rem !important;
-    backdrop-filter: blur(10px) !important;
-    gap: 10px !important;
+    backdrop-filter: blur(12px) !important;
+    gap: 8px !important;
 }
 
 /* Tab button styling */
 button[data-baseweb="tab"] {
     color: #94a3b8 !important;
-    font-size: 1.1rem !important;
+    font-size: 1.05rem !important;
     font-weight: 600 !important;
     padding: 12px 24px !important;
     border-radius: 10px !important;
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transition: all 0.2s ease-in-out !important;
     border: none !important;
     background: transparent !important;
 }
@@ -139,16 +139,37 @@ button[data-baseweb="tab"]:hover {
     background: rgba(255, 255, 255, 0.05) !important;
 }
 
+/* Selected active tab styling (overrides white or default red text) */
 button[data-baseweb="tab"][aria-selected="true"] {
-    color: #ffffff !important;
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.25) 0%, rgba(99, 102, 241, 0.05) 100%) !important;
-    border-bottom: 2px solid #6366f1 !important;
-    box-shadow: inset 0 0 12px rgba(99, 102, 241, 0.15) !important;
+    color: #818cf8 !important;
+    background: rgba(99, 102, 241, 0.15) !important;
+}
+
+/* Selected active tab indicator bar (forces indigo instead of the default red) */
+div[data-baseweb="tab-highlight"], 
+div[role="tablist"] + div {
+    background-color: #6366f1 !important;
+    height: 2px !important;
 }
 
 /* Hide the default horizontal line under tabs */
 div[data-testid="stTabBar"]::after {
     display: none !important;
+}
+
+/* Share, GitHub, and settings icons styling */
+header[data-testid="stHeader"] button, 
+header[data-testid="stHeader"] a, 
+header[data-testid="stHeader"] svg {
+    color: #94a3b8 !important;
+    fill: #94a3b8 !important;
+}
+
+header[data-testid="stHeader"] button:hover, 
+header[data-testid="stHeader"] a:hover, 
+header[data-testid="stHeader"] svg:hover {
+    color: #ffffff !important;
+    fill: #ffffff !important;
 }
 
 /* Dividers */
